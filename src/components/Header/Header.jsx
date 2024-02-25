@@ -119,7 +119,12 @@ const Header = () => {
               
 
             <div className="profile">
-                <motion.img whileTap={{scale:1.2}} src={ currentUser? currentUser.photoURL : userIcon} alt="" onClick={toggleProfileActions} />
+            <motion.img
+    whileTap={{ scale: 1.2 }}
+    src={currentUser && currentUser.photoURL ? currentUser.photoURL : userIcon}
+    alt=""
+    onClick={toggleProfileActions}
+  />
                 <div className="profile__actions" ref={profileActionRef} onClick={toggleProfileActions}>
                   {
                     currentUser ? <div className="d-flex align-items-center justify-content-center flex-column">

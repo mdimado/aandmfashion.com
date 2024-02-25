@@ -33,24 +33,34 @@ const MyOrders = () => {
             <Table striped>
               <thead>
                 <tr>
-                  <th>Order ID</th>
-                  <th>Name</th>
-                  <th>Payment Method</th>
-                  <th>Total Amount</th>
-                  <th>Order Date</th>
+                  <th>Order Details</th>
+                  
                 </tr>
               </thead>
               <tbody>
                 {orders.map((order) => (
-                  <tr key={order.id}>
-                    <td>
-                      <Link to={`/orderDetails/${order.id}`}>{order.id}</Link>
-                    </td>
-                    <td>{order.name}</td>
-                    <td>{order.paymentMethod}</td>
-                    <td>Rs. {order.totalAmount}</td>
-                    <td>{order.orderDate}</td>
-                  </tr>
+                  
+                    
+                  <Link to={`/orderDetails/${order.id}`}><div className='orderbox'> 
+                        <div>
+                          <p>Order Id:</p>{order.id}
+                        </div>
+                        <div>
+                          <p>Ordered by</p> {order.name}
+                        </div>
+                        <div>
+                          <p>Total Amount</p> Rs.{order.totalAmount}
+                        </div>
+                        <div>
+                          <p>Payment method</p> {order.paymentMethod}
+                        </div>
+                        <div>
+                          <p>Order date</p> {order.orderDate}
+                        </div>
+                      </div></Link>
+                    
+                    
+                  
                 ))}
               </tbody>
             </Table>
@@ -62,3 +72,6 @@ const MyOrders = () => {
 };
 
 export default MyOrders;
+
+
+

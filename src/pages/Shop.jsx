@@ -20,7 +20,7 @@ const Shop = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(24);
   const [searchTerm, setSearchTerm] = useState("");
-
+  const [isLoading, setIsLoading] = useState(true);
   const readCountRef = useRef(0);
 
   useEffect(() => {
@@ -39,8 +39,14 @@ const Shop = () => {
         ...doc.data(),
       }));
       setProductsData(products);
-      setFilteredProducts(products); // Initialize filteredProducts with all products
+      setFilteredProducts(products);
       setSearchTerm("");
+      setIsLoading(false);
+
+      // Show "No Products Found" after 10 seconds
+      setTimeout(() => {
+        setIsLoading(true);
+      }, 10000);
     } catch (error) {
       console.log("Error fetching products: ", error);
     }
@@ -134,13 +140,13 @@ const Shop = () => {
 
   return (
     <Helmet title="Shop">
-      <CommonSection title="Products" />
+      <CommonSection title="Products" hideOnMobile={true}/>
 
-      <section>
+      <section className="stick-section">
         <Container>
           <Row>
           <Col lg="12" >
-              <div className="search__box">
+            <div className="search_box_cont" ><div className="search__box">
                 <input
                   type="text"
                   placeholder="Search Product ..."
@@ -150,10 +156,15 @@ const Shop = () => {
                 <span>
                   <i className="ri-search-line"></i>
                 </span>
-              </div>
+              </div></div>
+              
             </Col>
-            <Col lg="4" md="6">
-              <div className="filter__widget">
+
+            <div>
+
+           <div className="widgets"></div>
+
+            <div className="filter__widget">
                 <select value={selectedCategory} onChange={handleFilter}>
                   <option value="">Filter By Category</option>
                   <option value="Saree">Saree</option>
@@ -165,8 +176,7 @@ const Shop = () => {
                   <option value="Lehangas">Lehangas</option>
                 </select>
               </div>
-            </Col>
-            <Col lg="4" md="6" className="">
+            
               {selectedCategory && (
                 <div className="filter__widget">
                   <select value={selectedSubCategory} onChange={handleSubCategory}>
@@ -179,8 +189,7 @@ const Shop = () => {
                   </select>
                 </div>
               )}
-            </Col>
-            <Col lg="4" md="6" className="">
+            
               <div className="filter__widget">
                 <select value={selectedSort} onChange={handleSort}>
                   <option value="">Sort by</option>
@@ -188,22 +197,21 @@ const Shop = () => {
                   <option value="price-high-low">Price: High to Low</option>
                 </select>
               </div>
-            </Col>
+   
            
-            <Col lg="12" className="mt-3">
+            
               {(selectedCategory !== "" || selectedSubCategory !== "" || selectedSort !== "") && (
                 <button className="buy__button" onClick={handleClearFilters}>
                   Clear Filters
                 </button>
               )}
-            </Col>
+            </div>
+            
+              
+
           </Row>
         </Container>
-      </section>
-
       
-
-      <section className="pt-0">
         <Container>
           <Row>
             {currentProducts.length === 0 ? (

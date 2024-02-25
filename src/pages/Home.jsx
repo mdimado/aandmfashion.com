@@ -4,18 +4,12 @@ import { motion } from "framer-motion";
 import Helmet from "../components/Helmet/Helmet";
 import "../styles/home.css";
 import { Container, Row, Col } from "reactstrap";
-import heroImg from "../assets/images/hero-img.png";
 import Services from "../services/Services";
 import ProductsList from "../components/UI/ProductsList";
 import Clock from "../components/UI/Clock";
 import useGetData from "../custom-hooks/useGetData";
 import timer from "../assets/images/timer.png";
-import gown from "../assets/images/c-gown.png";
-import saree from "../assets/images/c-saree.png";
-import lehanga from "../assets/images/c-lehanga.png";
-import readymade from "../assets/images/c-readymade.png";
-import unstitched from "../assets/images/c-unstitched.png";
-import sharara from "../assets/images/c-sharara.png";
+
 
 const Home = () => {
   useEffect(() => {
@@ -164,7 +158,39 @@ const Home = () => {
               <h2 className="section__title">Trending Products</h2>
             </Col>
             {loading ? (
-              <h5 className="fw-bold">Loading...</h5>
+              <h5 className="fw-bold"><div className="displayflexxing"> 
+                
+                <div class="card">
+              <div class="card__image"></div>
+              <div class="card__content">
+                <h2 className="card__h2"></h2>
+                <p className="card__p"></p>
+              </div>
+          </div>
+          
+          <div class="card">
+              <div class="card__image"></div>
+              <div class="card__content">
+                <h2 className="card__h2"></h2>
+                <p className="card__p"></p>
+              </div>
+          </div>
+          
+          <div class="card">
+              <div class="card__image"></div>
+              <div class="card__content">
+                <h2 className="card__h2"></h2>
+                <p className="card__p"></p>
+              </div>
+          </div>
+          
+          <div class="card">
+              <div class="card__image"></div>
+              <div class="card__content">
+                <h2 className="card__h2"></h2>
+                <p className="card__p"></p>
+              </div>
+          </div></div></h5>
             ) : (
               <ProductsList data={trendingProducts} />
               
@@ -181,7 +207,7 @@ const Home = () => {
               <div className="clock_top-content">
                 <h3 className="text-black fs-6 mb-2">Limited Offer</h3>
                 <h3 className="text-black fs-3 mb-2 per">
-                  12% off on all products
+                  50% off on all products
                 </h3>
               </div>
               <Clock />

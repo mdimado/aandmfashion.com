@@ -166,7 +166,7 @@ const Signup = () => {
                 <h6 className="mb-4">SignUp to continue</h6>
 
                 <Form className="auth__form" onSubmit={signup}>
-                  <div>
+                  <div className="auth__formo">
                     <button type="button" className="buy__button auth__btn google_btn " onClick={handleGoogleSignup}><img src={googleimg} alt="" /> Sign Up with Google</button>
                     <p className='OR'>OR</p>
                   </div>

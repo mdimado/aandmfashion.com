@@ -15,6 +15,7 @@ import { getMessaging, getToken, sendMessage } from 'firebase/messaging';
 import { doc, getDoc } from 'firebase/firestore';
 
 
+
 const Checkout = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -138,58 +139,7 @@ const Checkout = () => {
     <section>
       <Container>
         <Row>
-          <Col lg="4">
-            <h4>Order Summary</h4>
-            <div className="table_total">
-              <table width="100%" className="table tableo table-borderd w-100">
-                <thead>
-                  <tr>
-                    <th className="text-center">Product</th>
-                    <th className="text-center">Price</th>
-                    <th className="text-center">Qty</th>
-                    <th className="text-center">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cartItems.map((item) => {
-                    const finalprice = item.price * item.quantity;
-                    return (
-                      <tr key={item.id}>
-                        <td className="text-center">{item.title} ({item.size}) {item.color && <><span>(</span><span style={{ marginLeft: "5px", backgroundColor: item.color, width: "10px", height: "10px",borderRadius:"20px", display: "inline-block" }}></span></>}
-          {item.color && <span> {item.color})</span>}</td>
-                        <td className="text-center">Rs.{item.price}</td>
-                        <td className="text-center">{item.quantity}</td>
-                        <td className="text-center">Rs.{finalprice}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <div className="divvvv">
-              <p>Total Amount:</p>
-              <p className="ppp"> Rs.{totalAmount}</p>
-            </div>
-            <div className="divvvv">
-              <p>Taxes</p>
-              <p className="ppp"> Rs.{taxes}</p>
-            </div>
-            <div className="divvvv">
-              <p>Delivery charges</p>
-              <p className="ppp">
-                <s>Rs.{Math.floor(delfee)}</s>FREE
-              </p>
-            </div>
-            <div className="divvvv">
-              <p>Additional discount</p>
-              <p className="ppp"> - Rs.{taxes}</p>
-            </div>
-            <div className="divvvv line_below">
-              <h3>Total Amount:</h3>
-              <h3 className="ppp"> Rs.{totalAmount}</h3>
-            </div>
-            <p className="divvvv line_below">Fill in the delivery details to continue</p>
-          </Col>
+          
           <Col lg="8">
             <h4 className="mb-3">Delivery Details</h4>
             <Form className="billing__form" onSubmit={handlePlaceOrder}>
@@ -257,6 +207,58 @@ const Checkout = () => {
                 </button>
               ) : null}
             </Form>
+          </Col>
+
+          <Col lg="4">
+            <h4>Order Summary</h4>
+            <div className="table_total">
+              <table width="100%" className="table tableo table-borderd w-100">
+                <thead>
+                  <tr>
+                    <th className="text-center">Product</th>
+                    <th className="text-center">Price</th>
+                    <th className="text-center">Qty</th>
+                    <th className="text-center">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cartItems.map((item) => {
+                    const finalprice = item.price * item.quantity;
+                    return (
+                      <tr key={item.id}>
+                        <td className="text-center">{item.title} ({item.size}) {item.color && <><span>(</span><span style={{ marginLeft: "5px", backgroundColor: item.color, width: "10px", height: "10px",borderRadius:"20px", display: "inline-block" }}></span></>}
+          {item.color && <span> {item.color})</span>}</td>
+                        <td className="text-center">Rs.{item.price}</td>
+                        <td className="text-center">{item.quantity}</td>
+                        <td className="text-center">Rs.{finalprice}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+            <div className="divvvv">
+              <p>Total Amount:</p>
+              <p className="ppp"> Rs.{totalAmount}</p>
+            </div>
+            <div className="divvvv">
+              <p>Taxes</p>
+              <p className="ppp"> Rs.{taxes}</p>
+            </div>
+            <div className="divvvv">
+              <p>Delivery charges</p>
+              <p className="ppp">
+                <s>Rs.{Math.floor(delfee)}</s>FREE
+              </p>
+            </div>
+            <div className="divvvv">
+              <p>Additional discount</p>
+              <p className="ppp"> - Rs.{taxes}</p>
+            </div>
+            <div className="divvvv line_below">
+              <h3>Total Amount:</h3>
+              <h3 className="ppp"> Rs.{totalAmount}</h3>
+            </div>
           </Col>
         </Row>
       </Container>

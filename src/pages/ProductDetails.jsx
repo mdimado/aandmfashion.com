@@ -16,10 +16,16 @@ import { doc, getDoc } from "firebase/firestore";
 import ProductsList from "../components/UI/ProductsList";
 import "../styles/product-details.css";
 import useGetData from "../custom-hooks/useGetData";
-import dellog from '../assets/images/dellog.png'
+import dellog from '../assets/images/dellog.png';
+import { NavLink, useNavigate } from "react-router-dom";
+
+
 
 const ProductDetails = () => {
+
+  
   useEffect(() => {
+    
     window.scrollTo(0, 0);
   }, []);
   const limit = 10;
@@ -29,7 +35,7 @@ const ProductDetails = () => {
   const [trendingProducts, setTrendingProducts] = useState([]);
   const [bestSalesProducts, setBestSalesProducts] = useState([]);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
+  const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const [tab, setTab] = useState("desc");
   const reviewUser = useRef("");
@@ -40,7 +46,26 @@ const ProductDetails = () => {
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [selectedVariantImage, setSelectedVariantImage] = useState("");
+  const [selectedDotIndex, setSelectedDotIndex] = useState(0);
 
+  const handleDotClick = (index) => {
+    setSelectedImageIndex(index);
+    setSelectedDotIndex(index);
+  };
+
+  const renderDots = () => {
+    if (!imgUrls) {
+      return null; // or any fallback content you want to provide
+    }
+  
+    return imgUrls.map((url, index) => (
+      <div
+        key={index}
+        className={`dot ${selectedDotIndex === index ? "active" : ""}`}
+        onClick={() => handleDotClick(index)}
+      />
+    ));
+  };
   useEffect(() => {
     const fetchProduct = async () => {
       const docRef = doc(db, "products", id);
@@ -100,11 +125,36 @@ const ProductDetails = () => {
   const addToCart = () => {
     if (availableSizes && availableSizes.length > 0 && !selectedSize) {
       toast.error("Please select the size before adding to cart.");
+      // Get the DOM element of the size__buttons section
+    const sizeButtonsSection = document.querySelector(".size__buttons");
+
+    if (sizeButtonsSection) {
+      // Calculate the offset to scroll to the center of the page
+      const windowHeight = window.innerHeight;
+      const sizeButtonsSectionHeight = sizeButtonsSection.clientHeight;
+      const offset = sizeButtonsSection.offsetTop - (windowHeight - sizeButtonsSectionHeight) / 2;
+
+      // Scroll to the center of the page
+      window.scrollTo({ top: offset, behavior: "smooth" });
+    }
       return;
     }
 
     if (availableColors && availableColors.length > 0 && !selectedColor) {
       toast.error("Please select the color before adding to cart.");
+      // Get the DOM element of the size__buttons section
+    const sizeButtonsSection = document.querySelector(".color__buttons");
+
+    if (sizeButtonsSection) {
+      // Calculate the offset to scroll to the center of the page
+      const windowHeight = window.innerHeight;
+      const sizeButtonsSectionHeight = sizeButtonsSection.clientHeight;
+      const offset = sizeButtonsSection.offsetTop - (windowHeight - sizeButtonsSectionHeight) / 2;
+
+      // Scroll to the center of the page
+      window.scrollTo({ top: offset, behavior: "smooth" });
+    }
+      
       return;
     }
 
@@ -120,7 +170,19 @@ const ProductDetails = () => {
 
     dispatch(cartActions.addItem(newItem));
 
-    toast.success("Product added successfully");
+    
+    toast.success(
+      <div className="display-flex flex-direction-column">
+        Product added successfully
+        
+        <button className="go-to-cart-button buy__button" onClick={() => navigateToCart()}>
+          Go to Cart
+        </button>
+      </div>,
+      {
+        autoClose: 7000,
+      }
+    );
   };
 
   const addToFavorites = () => {
@@ -132,7 +194,13 @@ const ProductDetails = () => {
         imgUrl,
       })
     );
-    toast.success("Product Added to Favorites");
+    toast.success("Product added successfully");
+    
+  };
+
+  // Function to handle "Go to Cart" button click
+  const navigateToCart = () => {
+    navigate('/cart');
   };
 
   useEffect(() => {
@@ -140,25 +208,18 @@ const ProductDetails = () => {
   }, [product]);
 
   const sliderSettings = {
-    dots: true,
+    dots: false, // Disable the default slick dots
     infinite: true,
-    speed: 500,
+    speed: 50,
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: selectedImageIndex,
     prevArrow: <div className="custom-slider-arrow prev-arrow">Previous</div>,
     nextArrow: <div className="custom-slider-arrow next-arrow">Next</div>,
-    autoplay: true, // Enable automatic slide transition
-    autoplaySpeed: 3000, // Time between slide transitions in milliseconds
-    arrows: true, // Show navigation arrows
-    responsive: [
-      {
-        breakpoint: 768, // Adjust settings for smaller screens
-        settings: {
-          arrows: false,
-        },
-      },
-    ],
+    autoplay: true,
+    autoplaySpeed: 30000,
+    arrows: true,
+    beforeChange: (current, next) => setSelectedDotIndex(next),
   };
 
   // Function to handle size selection
@@ -175,9 +236,44 @@ const ProductDetails = () => {
     setSelectedVariantImage(vimgurls[index]); // Set the selected variant image URL
   };
 
+  useEffect(() => {
+    const updateMetaTags = () => {
+      const ogImage = imgUrl;
+      const ogTitle = title;
+  
+      const metaTags = document.head.getElementsByTagName("meta");
+  
+      // Remove existing Open Graph meta tags
+      for (let i = metaTags.length - 1; i >= 0; i--) {
+        const tag = metaTags[i];
+        if (
+          tag.getAttribute("property") === "og:image" ||
+          tag.getAttribute("property") === "og:title"
+        ) {
+          tag.remove();
+        }
+      }
+  
+      // Add new Open Graph meta tags
+      const ogImageTag = document.createElement("meta");
+      ogImageTag.setAttribute("property", "og:image");
+      ogImageTag.content = ogImage;
+      document.head.appendChild(ogImageTag);
+  
+      const ogTitleTag = document.createElement("meta");
+      ogTitleTag.setAttribute("property", "og:title");
+      ogTitleTag.content = ogTitle;
+      document.head.appendChild(ogTitleTag);
+    };
+  
+    updateMetaTags();
+  }, [imgUrl, title]);
+  
+
   return (
     <Helmet title={title}>
-      <CommonSection title={title} />
+       
+      <CommonSection className='commsect' title={title} hideOnMobile={true}/>
 
       <section className="pt-0">
         <Container>
@@ -198,6 +294,7 @@ const ProductDetails = () => {
                       </div>
                     ))}
                 </Slider>
+                <div className="carDotsBox">{renderDots()}</div>
                 {isImageHovered && (
                   <div
                     className="zoom-overlay"
@@ -216,7 +313,7 @@ const ProductDetails = () => {
 
             <Col lg="7">
               <div className="product__details">
-                <h2>{title}</h2>
+                <span className="title_prod">{title}</span>
                 <div className="product__rating d-flex align-items-center gap-2 mb-3">
                   <div>
                     <span>
@@ -237,29 +334,38 @@ const ProductDetails = () => {
                   </div>
                 </div>
                 <div className="d-flex align-items-center gap-5">
-                  <span className="product__price">Rs.{price}</span>
+                <div className="price0">
+  <span>
+    <strike>Rs.{!isNaN(price) ? Math.floor(2 * parseFloat(price)) : "Invalid Price"}</strike>
+  </span>
+  <span className="product__price">Rs.{price}</span>
+</div>
+
+                  
+                  
                   <span>Category: {category}</span>
                 </div>
               </div>
               
 
               <div className="product__details">
-              {availableSizes && availableSizes.length > 0 && (
+                {availableSizes && availableSizes.length > 0 && (
                   <div>
                     <label>Select Size:</label>
-                    <div className="size__buttons">
-                      {availableSizes.map((size) => (
-                        <button
-                          key={size}
-                          className={`size__button ${
-                            selectedSize === size ? "selected" : ""
-                          }`}
-                          onClick={() => handleSizeSelection(size)}
-                        >
-                          {size}
-                        </button>
-                      ))}
-                    </div>
+                    <div className={`size__buttons`}>
+  {availableSizes.map((size) => (
+    <button
+      key={size}
+      className={`size__button ${
+        selectedSize === size ? "selected" : ""
+      }`}
+      onClick={() => handleSizeSelection(size)}
+    >
+      {size}
+    </button>
+  ))}
+</div>
+
                   </div>
                 )}
                 {availableColors && availableColors.length > 0 && (
@@ -281,10 +387,10 @@ const ProductDetails = () => {
                 )}
               </div>
 
-              <div className="product__details mbmb">
-                <div className="d-flex align-items-center gap-5">
+              <div className=" sticky-bottom">
+                <div className="d-flex align-items-center gap-2">
                   
-                  <button className="buy__button w-100" onClick={addToCart}>
+                  <button className="buy__button w-100 " onClick={addToCart}>
                     Add to Cart
                   </button>
                   <button

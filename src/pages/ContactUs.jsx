@@ -10,7 +10,9 @@ import { Link, useNavigate } from "react-router-dom";
 
 const ContactUs = () => {
   useEffect(() => {
+
     window.scrollTo(0, 0);
+
   }, []);
 
   const lol =()=>{
@@ -57,7 +59,7 @@ const ContactUs = () => {
                     <textarea className="ta" type="email" placeholder="Message..."/>
                   </FormGroup>
 
-                  <button type="submit" className="buy__button auth__btn submit_now">Submit</button>
+                  <button onClick={lol} type="submit" className="buy__button auth__btn submit_now">Submit</button>
                 </Form>
       </Col>
     </Row>
