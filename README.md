@@ -8,8 +8,8 @@ To get started with this project, follow these steps:
 
 1. **Clone the Repository:**
    ```bash
-   git clone <repository-url>
-   cd a-and-m-shopping-brand
+   git clone https://github.com/mdimado/aandmfashion.com.git
+   cd aandmfashion.com
    ```
 
 2. **Install Dependencies:**
@@ -42,6 +42,7 @@ The project folder structure is organized as follows:
   - **`styles/`**: CSS or SCSS stylesheets for styling components.
   - **`App.js`**: Main component where routing and layout are defined.
   - **`index.js`**: Entry point of the React application.
+  - **`routers/`**: Contains files for routing.
 
 ### Available Scripts
 
