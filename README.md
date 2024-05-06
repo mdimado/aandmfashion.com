@@ -33,30 +33,22 @@ To get started with this project, follow these steps:
 
 The project folder structure is organized as follows:
 
-- **`assets/`**: Contains static assets such as images, icons, or other media used in the project.
-
-- **`components/`**: Houses reusable React components used throughout the website, such as `Header`, `RecipeCard`, `RecipeForm`, etc.
-
-- **`custom-hooks/`**: Holds custom React hooks that encapsulate reusable logic, such as fetching data from Firebase or handling form state.
-
-- **`pages/`**: Contains React components representing different website pages, such as `Home`, `Recipes`, `AddRecipe`, `RecipeDetails`, etc.
-
-- **`redux/`**: Includes Redux-related files for state management using Redux Toolkit.
-  - **`reducers/`**: Redux reducers for managing specific slices of state.
-  - **`actions/`**: Action creators for dispatching actions to update state.
-  - **`store.js`**: Configures the Redux store and middleware.
-
-- **`routers/`**: Holds React Router configuration and routing components for navigation within the app.
-
-- **`styles/`**: Contains CSS or SCSS files for styling components and layout.
-
-- **`App.css`**: Global CSS file for styling the main application layout.
-
-- **`App.js`**: Main component where routing and layout structure are defined. This component likely renders other components based on the current route.
-
-- **`firebase.config.js`**: Configuration file for Firebase, including initialization and Firebase project settings.
-
-- **`index.js`**: Entry point of the React application, where the React app is rendered into the HTML root element (`<div id="root"></div>`).
+- **`public/`**: Contains static assets and the main `index.html` file.
+- **`src/`**: Contains all the source code for the React.js frontend.
+  - **`assets/`**: Static assets such as images, fonts, and other media files used in the project.
+  - **`components/`**: Reusable React components used throughout the project.
+  - **`custom-hooks/`**: Custom React hooks that encapsulate reusable logic.
+  - **`pages/`**: React components representing different website pages.
+  - **`redux/`**: Redux store setup, reducers, and actions.
+  - **`routers/`**: React Router configuration and routing components.
+  - **`services/`**: Utility functions and API service modules.
+  - **`stripe/`**: Integration with Stripe for payment processing.
+  - **`styles/`**: CSS or SCSS stylesheets for styling components.
+  - **`utils/`**: Helper functions and utilities.
+  - **`App.css`**: Global CSS file for styling the main application layout.
+  - **`App.js`**: Main component where routing and layout are defined.
+  - **`firebase.config.js`**: Firebase configuration and initialization.
+  - **`index.js`**: Entry point of the React application.
 
 ### Available Scripts
 
@@ -72,8 +64,9 @@ Explore these related topics to understand more about this project:
 
 - React, Redux, and managing state in a single-page application.
 - Firebase for real-time data management and user authentication.
-- Integrating third-party services like Twilio for notifications.
-- Firestore database for storing and querying structured data.
+- Integrating third-party services like Stripe for payments.
+- Using React Router for client-side routing.
+- Styling components with CSS or SCSS for a polished user interface.
 
 ### Learn More
 
@@ -81,5 +74,7 @@ For more information about the technologies used in this project, refer to the f
 
 - [React.js Documentation](https://reactjs.org/docs/getting-started.html)
 - [Firebase Documentation](https://firebase.google.com/docs)
+- [Redux Documentation](https://redux.js.org/)
+- [React Router Documentation](https://reactrouter.com/)
 
 Feel free to reach out with any questions or issues related to this project. Happy coding!
