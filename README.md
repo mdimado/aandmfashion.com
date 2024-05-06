@@ -33,16 +33,30 @@ To get started with this project, follow these steps:
 
 The project folder structure is organized as follows:
 
-- **`public/`**: Contains static assets and the main `index.html` file.
-- **`src/`**: Contains all the source code for the React.js frontend.
-  - **`components/`**: Reusable React components used throughout the project.
-  - **`pages/`**: React components representing different website pages.
-  - **`firebase/`**: Firebase configuration and utility functions.
-  - **`redux/`**: Redux store setup, reducers, and actions.
-  - **`styles/`**: CSS or SCSS stylesheets for styling components.
-  - **`App.js`**: Main component where routing and layout are defined.
-  - **`index.js`**: Entry point of the React application.
-  - **`routers/`**: Contains files for routing.
+- **`assets/`**: Contains static assets such as images, icons, or other media used in the project.
+
+- **`components/`**: Houses reusable React components used throughout the website, such as `Header`, `RecipeCard`, `RecipeForm`, etc.
+
+- **`custom-hooks/`**: Holds custom React hooks that encapsulate reusable logic, such as fetching data from Firebase or handling form state.
+
+- **`pages/`**: Contains React components representing different website pages, such as `Home`, `Recipes`, `AddRecipe`, `RecipeDetails`, etc.
+
+- **`redux/`**: Includes Redux-related files for state management using Redux Toolkit.
+  - **`reducers/`**: Redux reducers for managing specific slices of state.
+  - **`actions/`**: Action creators for dispatching actions to update state.
+  - **`store.js`**: Configures the Redux store and middleware.
+
+- **`routers/`**: Holds React Router configuration and routing components for navigation within the app.
+
+- **`styles/`**: Contains CSS or SCSS files for styling components and layout.
+
+- **`App.css`**: Global CSS file for styling the main application layout.
+
+- **`App.js`**: Main component where routing and layout structure are defined. This component likely renders other components based on the current route.
+
+- **`firebase.config.js`**: Configuration file for Firebase, including initialization and Firebase project settings.
+
+- **`index.js`**: Entry point of the React application, where the React app is rendered into the HTML root element (`<div id="root"></div>`).
 
 ### Available Scripts
 
