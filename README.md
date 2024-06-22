@@ -77,4 +77,8 @@ For more information about the technologies used in this project, refer to the f
 - [Redux Documentation](https://redux.js.org/)
 - [React Router Documentation](https://reactrouter.com/)
 
-Feel free to reach out with any questions or issues related to this project. Happy coding!
+
+<img width="1440" alt="Screenshot 2024-06-22 at 10 44 35 AM" src="https://github.com/mdimado/aandmfashion.com/assets/123477562/f01c90ec-ef14-4020-bac5-24ce80420e7a">
+<img width="1440" alt="Screenshot 2024-06-22 at 10 45 15 AM" src="https://github.com/mdimado/aandmfashion.com/assets/123477562/d2cee0cf-151b-484a-85e4-d5d990b3ee06">
+<img width="1439" alt="Screenshot 2024-06-22 at 10 45 43 AM" src="https://github.com/mdimado/aandmfashion.com/assets/123477562/5f2fa18f-8aa9-4a07-89b6-38d137cd6c39">
+<img width="1439" alt="Screenshot 2024-06-22 at 10 46 55 AM" src="https://github.com/mdimado/aandmfashion.com/assets/123477562/19e1109b-0e48-48c2-91ff-a6700b9b00b1">
