@@ -1,0 +1,41 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build files
+dist/
+build/
+*.log
+*.lock
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE/editor files
+.vscode/
+.idea/
+.DS_Store
+
+# Miscellaneous
+*.swp
+*.swo
+
+# React-specific
+/.next/
+/out/
+.cache/
+
+# Coverage reports
+coverage/
+
+# Logs
+logs/
+*.log
+
+# Generated files
+public/static/

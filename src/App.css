@@ -81,6 +81,16 @@ section{
 	border-radius: 4px;
 }
 
+.Toastify{
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: auto !important;
+  height: auto !important;
+  pointer-events: none;
+}
+
+
 .FormRow {
 	display: -ms-flexbox;
 	display: flex;

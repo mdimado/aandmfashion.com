@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
 import { Container, Button } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
-import Lottie from 'lottie-react-web';
 import animationData from '../assets/lottie/79094-blue-shopping-cart.json';
 import '../styles/orderPlaced.css'; // Import the CSS file for styling
 
@@ -37,16 +36,7 @@ const OrderPlaced = ({ orderId }) => {
   return (
     <section className="order-placed-section">
       <Container>
-        <div className="lottie-animation">
-          <Lottie
-            options={{
-              animationData: animationData,
-              loop: true,
-            }}
-            width={300}
-            height={300}
-          />
-        </div>
+        
 
         {showConfetti && (
           <div className="confetti-wrapper">
